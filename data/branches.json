@@ -1,0 +1,28 @@
+{
+  "branches": [
+    {
+      "id": 1,
+      "restaurant_id": 1,
+      "name": "Gachibowli Main",
+      "address": "103, Sri Sai Enclave, PJR Nagar, Gachibowli, Hyderabad, Telangana 500032, India",
+      "phone": "+919876543210",
+      "email": "contact@hotelabhiruchi.com",
+      "working_hours": "Tuesday – Sunday: 11 AM – 11 PM",
+      "is_active": true,
+      "created_at": "2026-06-09T17:34:32.475919+00:00",
+      "updated_at": "2026-06-09T17:34:32.475919+00:00"
+    },
+    {
+      "id": 2,
+      "restaurant_id": 2,
+      "name": "TNR Grand Main",
+      "address": "12 MG Road, Hyderabad, Telangana 500001, India",
+      "phone": "+919876543212",
+      "email": "contact@hoteltnrgrand.com",
+      "working_hours": "Daily: 11 AM – 11 PM",
+      "is_active": true,
+      "created_at": "2026-06-09T17:34:32.475919+00:00",
+      "updated_at": "2026-06-09T17:34:32.475919+00:00"
+    }
+  ]
+}

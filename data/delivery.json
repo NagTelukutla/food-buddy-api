@@ -1,0 +1,38 @@
+{
+  "partners": [
+    {
+      "id": 1,
+      "restaurant_id": 1,
+      "name": "Driver One",
+      "phone": "+919876543211",
+      "user_id": 3,
+      "vehicle_type": "bike",
+      "vehicle_number": "KA-01-DR-001",
+      "status": "busy",
+      "is_active": true,
+      "created_at": "2026-06-09T17:34:32.475919+00:00",
+      "updated_at": "2026-06-09T18:04:49.037211+00:00"
+    }
+  ],
+  "assignments": [
+    {
+      "order_id": "ORD-20260003",
+      "delivery_partner_id": 1,
+      "delivery_status": "accepted",
+      "created_at": "2026-06-09T18:04:08.378966+00:00",
+      "updated_at": "2026-06-09T18:04:49.021606+00:00",
+      "id": 1
+    }
+  ],
+  "driver_locations": [
+    {
+      "order_id": "ORD-20260003",
+      "delivery_partner_id": 1,
+      "latitude": 17.4646,
+      "longitude": 78.3666,
+      "created_at": "2026-06-09T18:05:21.773458+00:00",
+      "updated_at": "2026-06-09T18:21:26.344255+00:00",
+      "id": 1
+    }
+  ]
+}

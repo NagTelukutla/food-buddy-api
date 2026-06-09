@@ -1,0 +1,112 @@
+{
+  "restaurants": [
+    {
+      "id": 1,
+      "name": "Hotel Abhi ruchi",
+      "slug": "hotel-abhi-ruchi",
+      "tagline": "Real taste of andhra",
+      "description": "Hotel Abhi ruchi serves authentic Andhra cuisine with traditional recipes.",
+      "logo": "/logo.svg",
+      "hero_image": "/hero.jpg",
+      "hero_slides": [
+        {
+          "title": "Welcome to Hotel Abhi ruchi",
+          "subtitle": "Real taste of andhra — spices, soul, and tradition on every plate.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-dark-900 via-brand-900 to-brand-700",
+          "image": "/slides/slide-1.svg"
+        },
+        {
+          "title": "Signature Dum Biryani",
+          "subtitle": "Slow-cooked layers of fragrant rice and authentic Andhra masala.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-brand-900 via-brand-700 to-amber-700",
+          "image": "/slides/slide-2.svg"
+        },
+        {
+          "title": "Dine In or Pickup",
+          "subtitle": "Enjoy at our restaurant or order fresh food ready for pickup.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-stone-900 via-brand-800 to-orange-800",
+          "image": "/slides/slide-3.svg"
+        },
+        {
+          "title": "Fresh. Hot. Homestyle.",
+          "subtitle": "Starters, biryanis, curries, and desserts made the Andhra way.",
+          "cta_label": "View Menu",
+          "cta_link": "/menu",
+          "accent": "from-orange-900 via-brand-800 to-dark-900",
+          "image": "/slides/slide-4.svg"
+        }
+      ],
+      "email": "contact@hotelabhiruchi.com",
+      "phone": "+919876543210",
+      "address": "103, Sri Sai Enclave, PJR Nagar, Gachibowli, Hyderabad, Telangana 500032, India",
+      "latitude": 17.435886,
+      "longitude": 78.3618,
+      "cuisine_type": "Andhra",
+      "working_hours": "Tuesday – Sunday: 11 AM – 11 PM",
+      "owner_user_id": 1,
+      "is_active": true,
+      "created_at": "2026-06-09T17:34:32.475919+00:00",
+      "updated_at": "2026-06-09T17:34:32.475919+00:00"
+    },
+    {
+      "id": 2,
+      "name": "Hotel TNR Grand",
+      "slug": "hotel-tnr-grand",
+      "tagline": "Grand flavors, grand experience",
+      "description": "Hotel TNR Grand serves premium South Indian cuisine with exceptional hospitality.",
+      "logo": "/logo.svg",
+      "hero_image": "/hero.jpg",
+      "hero_slides": [
+        {
+          "title": "Welcome to Hotel Abhi ruchi",
+          "subtitle": "Real taste of andhra — spices, soul, and tradition on every plate.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-dark-900 via-brand-900 to-brand-700",
+          "image": "/slides/slide-1.svg"
+        },
+        {
+          "title": "Signature Dum Biryani",
+          "subtitle": "Slow-cooked layers of fragrant rice and authentic Andhra masala.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-brand-900 via-brand-700 to-amber-700",
+          "image": "/slides/slide-2.svg"
+        },
+        {
+          "title": "Dine In or Pickup",
+          "subtitle": "Enjoy at our restaurant or order fresh food ready for pickup.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-stone-900 via-brand-800 to-orange-800",
+          "image": "/slides/slide-3.svg"
+        },
+        {
+          "title": "Fresh. Hot. Homestyle.",
+          "subtitle": "Starters, biryanis, curries, and desserts made the Andhra way.",
+          "cta_label": "View Menu",
+          "cta_link": "/menu",
+          "accent": "from-orange-900 via-brand-800 to-dark-900",
+          "image": "/slides/slide-4.svg"
+        }
+      ],
+      "email": "contact@hoteltnrgrand.com",
+      "phone": "+919876543212",
+      "address": "12 MG Road, Hyderabad, Telangana 500001, India",
+      "latitude": 17.4401,
+      "longitude": 78.3489,
+      "cuisine_type": "South Indian",
+      "working_hours": "Daily: 11 AM – 11 PM",
+      "owner_user_id": 4,
+      "is_active": true,
+      "created_at": "2026-06-09T17:34:32.475919+00:00",
+      "updated_at": "2026-06-09T17:34:32.475919+00:00"
+    }
+  ]
+}

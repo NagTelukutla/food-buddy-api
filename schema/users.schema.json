@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "users",
+  "type": "object",
+  "properties": {
+    "users": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "username", "email", "password_hash", "full_name", "role", "is_active"],
+        "properties": {
+          "id": { "type": "integer" },
+          "username": { "type": "string" },
+          "email": { "type": "string" },
+          "password_hash": { "type": "string" },
+          "full_name": { "type": "string" },
+          "phone": { "type": "string" },
+          "role": {
+            "enum": ["customer", "admin", "driver", "platform"]
+          },
+          "restaurant_id": { "type": "integer" },
+          "branch_id": { "type": "integer" },
+          "is_active": { "type": "boolean" },
+          "is_customer": { "type": "boolean" },
+          "created_at": { "type": "string" },
+          "updated_at": { "type": "string" }
+        }
+      }
+    }
+  }
+}

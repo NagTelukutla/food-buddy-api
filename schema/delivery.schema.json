@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "delivery",
+  "type": "object",
+  "required": ["partners", "assignments", "driver_locations"],
+  "properties": {
+    "partners": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "restaurant_id", "name", "phone", "status", "is_active", "created_at", "updated_at"],
+        "properties": {
+          "id": { "type": "integer" },
+          "restaurant_id": { "type": "integer" },
+          "user_id": { "type": ["integer", "null"] },
+          "name": { "type": "string" },
+          "phone": { "type": "string" },
+          "vehicle_type": {
+            "type": ["string", "null"],
+            "enum": ["bike", "scooter", "car", "bicycle", null]
+          },
+          "vehicle_number": { "type": ["string", "null"] },
+          "status": {
+            "type": "string",
+            "enum": ["available", "busy", "offline"]
+          },
+          "is_active": { "type": "boolean" },
+          "created_at": { "type": "string" },
+          "updated_at": { "type": "string" }
+        }
+      }
+    },
+    "driver_locations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "order_id", "delivery_partner_id", "latitude", "longitude", "updated_at"],
+        "properties": {
+          "id": { "type": "integer" },
+          "order_id": { "type": "string" },
+          "delivery_partner_id": { "type": "integer" },
+          "latitude": { "type": "number" },
+          "longitude": { "type": "number" },
+          "created_at": { "type": "string" },
+          "updated_at": { "type": "string" }
+        }
+      }
+    },
+    "assignments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "order_id", "delivery_status", "created_at", "updated_at"],
+        "properties": {
+          "id": { "type": "integer" },
+          "order_id": { "type": "string" },
+          "delivery_partner_id": { "type": ["integer", "null"] },
+          "delivery_status": {
+            "type": "string",
+            "enum": ["pending_acceptance", "accepted", "out_for_delivery", "delivered", "picked_up", "in_transit"]
+          },
+          "created_at": { "type": "string" },
+          "updated_at": { "type": "string" }
+        }
+      }
+    }
+  }
+}

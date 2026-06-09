@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "order_metadata",
+  "description": "Extended order fields stored in backend/data/order_metadata.json (SQLite orders hold core fields).",
+  "type": "object",
+  "required": ["metadata"],
+  "properties": {
+    "metadata": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "order_id", "restaurant_id", "order_type", "created_at", "updated_at"],
+        "properties": {
+          "id": { "type": "integer" },
+          "order_id": { "type": "string" },
+          "restaurant_id": { "type": "integer" },
+          "customer_id": { "type": ["integer", "null"] },
+          "order_type": {
+            "type": "string",
+            "enum": ["Dine In", "Pickup", "Delivery"]
+          },
+          "delivery_address": {
+            "type": ["string", "null"],
+            "description": "Customer delivery address for Delivery orders"
+          },
+          "delivery_lat": {
+            "type": ["number", "null"],
+            "description": "Geocoded delivery latitude for live map"
+          },
+          "delivery_lng": {
+            "type": ["number", "null"],
+            "description": "Geocoded delivery longitude for live map"
+          },
+          "created_at": { "type": "string" },
+          "updated_at": { "type": "string" }
+        }
+      }
+    }
+  }
+}

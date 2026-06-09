@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "auth_sessions",
+  "description": "Browser localStorage key auth_sessions — per-role JWT sessions (frontend only).",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": ["access_token", "refresh_token", "user"],
+    "properties": {
+      "access_token": { "type": "string" },
+      "refresh_token": { "type": "string" },
+      "user": {
+        "type": "object",
+        "required": ["id", "username", "full_name", "email", "role"],
+        "properties": {
+          "id": { "type": "integer" },
+          "username": { "type": "string" },
+          "full_name": { "type": "string" },
+          "email": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": ["customer", "admin", "driver", "platform"]
+          },
+          "phone": { "type": ["string", "null"] },
+          "restaurant_id": { "type": ["integer", "null"] },
+          "branch_id": { "type": ["integer", "null"] }
+        }
+      }
+    }
+  },
+  "propertyNames": {
+    "enum": ["customer", "restaurant", "delivery", "platform"]
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "name": "Hotel Abhi ruchi",
+  "tagline": "Real taste of andhra",
+  "logo": "/logo.svg",
+  "hero_image": "/hero.jpg",
+  "about": "Hotel Abhi ruchi serves authentic Andhra cuisine with traditional recipes, fresh ingredients, and the real flavors of the region—every meal crafted to taste like home.",
+  "address": "103, Sri Sai Enclave, PJR Nagar, Gachibowli, Hyderabad, Telangana 500032, India",
+  "phone": "+919876543210",
+  "email": "contact@hotelabhiruchi.com",
+  "working_hours": "Tuesday – Sunday: 11 AM – 11 PM\nMonday: First half closed (5 PM – 11 PM)",
+  "featured_dish_ids": [
+    16,
+    11,
+    2,
+    26
+  ],
+  "hero_slides": [
+    {
+      "title": "Welcome to Hotel Abhi ruchi",
+      "subtitle": "Real taste of andhra — spices, soul, and tradition on every plate.",
+      "cta_label": "Order Now",
+      "cta_link": "/menu",
+      "accent": "from-dark-900 via-brand-900 to-brand-700",
+      "image": "/slides/slide-1.svg"
+    },
+    {
+      "title": "Signature Dum Biryani",
+      "subtitle": "Slow-cooked layers of fragrant rice and authentic Andhra masala.",
+      "cta_label": "Order Now",
+      "cta_link": "/menu",
+      "accent": "from-brand-900 via-brand-700 to-amber-700",
+      "image": "/slides/slide-2.svg"
+    },
+    {
+      "title": "Dine In or Pickup",
+      "subtitle": "Enjoy at our restaurant or order fresh food ready for pickup.",
+      "cta_label": "Order Now",
+      "cta_link": "/menu",
+      "accent": "from-stone-900 via-brand-800 to-orange-800",
+      "image": "/slides/slide-3.svg"
+    },
+    {
+      "title": "Fresh. Hot. Homestyle.",
+      "subtitle": "Starters, biryanis, curries, and desserts made the Andhra way.",
+      "cta_label": "View Menu",
+      "cta_link": "/menu",
+      "accent": "from-orange-900 via-brand-800 to-dark-900",
+      "image": "/slides/slide-4.svg"
+    }
+  ],
+  "restaurant_id": 1
+}

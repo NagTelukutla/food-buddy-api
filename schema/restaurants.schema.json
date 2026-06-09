@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "restaurants",
+  "type": "object",
+  "properties": {
+    "restaurants": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "slug", "email", "phone", "owner_user_id", "is_active"],
+        "properties": {
+          "id": { "type": "integer" },
+          "name": { "type": "string" },
+          "slug": { "type": "string" },
+          "tagline": { "type": "string" },
+          "description": { "type": "string" },
+          "logo": { "type": "string" },
+          "hero_image": { "type": "string" },
+          "hero_slides": { "type": "array" },
+          "email": { "type": "string" },
+          "phone": { "type": "string" },
+          "address": { "type": "string" },
+          "latitude": { "type": ["number", "null"], "description": "Restaurant latitude for live delivery map" },
+          "longitude": { "type": ["number", "null"], "description": "Restaurant longitude for live delivery map" },
+          "cuisine_type": { "type": "string" },
+          "working_hours": { "type": "string" },
+          "owner_user_id": { "type": "integer" },
+          "is_active": { "type": "boolean" },
+          "created_at": { "type": "string" },
+          "updated_at": { "type": "string" }
+        }
+      }
+    }
+  }
+}

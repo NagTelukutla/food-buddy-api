@@ -1,0 +1,22 @@
+# Secrets — never commit real values
+.env
+.env.local
+.env.*.local
+!.env.example
+!.env.production
+
+# Python
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Runtime data
+database/restaurant.db
+
+# OS / IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.log

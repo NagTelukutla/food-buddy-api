@@ -1,0 +1,56 @@
+# Render Blueprint — Food Buddy API (standalone repo — deploy from repository root)
+services:
+  - type: web
+    name: food-buddy-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: APP_NAME
+        value: Food Buddy
+      - key: APP_ENV
+        value: production
+      - key: DEBUG
+        value: "false"
+      - key: PYTHON_VERSION
+        value: "3.12.8"
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ALGORITHM
+        value: HS256
+      - key: ACCESS_TOKEN_EXPIRE_MINUTES
+        value: "60"
+      - key: REFRESH_TOKEN_EXPIRE_DAYS
+        value: "7"
+      - key: CORS_ORIGINS
+        sync: false
+      - key: DATABASE_URL
+        value: sqlite:////var/data/restaurant.db
+      - key: DATA_DIR
+        value: /var/data/json
+      - key: TAX_RATE
+        value: "0.05"
+      - key: ORDER_ID_PREFIX
+        value: ORD
+      - key: RAZORPAY_KEY_ID
+        sync: false
+      - key: RAZORPAY_KEY_SECRET
+        sync: false
+      - key: RAZORPAY_CURRENCY
+        value: INR
+      - key: RAZORPAY_COMPANY_NAME
+        sync: false
+      - key: RAZORPAY_CHECKOUT_CONFIG_ID
+        sync: false
+      - key: GEOCODE_USER_AGENT
+        value: FoodBuddy/1.0
+      - key: GEOCODE_FALLBACK_LAT
+        value: "17.435886"
+      - key: GEOCODE_FALLBACK_LNG
+        value: "78.3618"
+    disk:
+      name: food-buddy-data
+      mountPath: /var/data
+      sizeGB: 1

@@ -1,0 +1,72 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password_hash": "$2b$12$yA2j7WDSUo6nFfwh5bor4eJhdt4tN7ujymuQJagSqgzXnuBAo6wQi",
+      "full_name": "Restaurant Admin",
+      "email": "admin@spicegarden.com",
+      "phone": "+919876543210",
+      "role": "admin",
+      "restaurant_id": 1,
+      "branch_id": 1,
+      "is_active": true,
+      "created_at": "2026-06-09T17:34:32.475919+00:00",
+      "updated_at": "2026-06-09T17:34:32.475919+00:00"
+    },
+    {
+      "id": 2,
+      "username": "superadmin",
+      "password_hash": "$2b$12$1oPDbwrrmRkSqozyQ5gVIegsu..KEiXUQDPer0nsDTlqhSpVaQzFK",
+      "full_name": "Super Admin",
+      "email": "superadmin@restaurant-platform.com",
+      "role": "platform",
+      "is_active": true,
+      "created_at": "2026-06-09T17:34:32.475919+00:00",
+      "updated_at": "2026-06-09T17:34:32.475919+00:00"
+    },
+    {
+      "id": 4,
+      "username": "admin2",
+      "password_hash": "$2b$12$b.Z6hVzF4RldaVbyeQTBz.Zpe221MtWxoz.WiEiFqoC6VqWLuF08m",
+      "full_name": "Hotel TNR Grand Admin",
+      "email": "admin2@hoteltnrgrand.com",
+      "phone": "+919876543212",
+      "role": "admin",
+      "restaurant_id": 2,
+      "branch_id": 2,
+      "is_active": true,
+      "created_at": "2026-06-09T17:34:32.475919+00:00",
+      "updated_at": "2026-06-09T17:34:32.475919+00:00"
+    },
+    {
+      "id": 3,
+      "username": "driver1",
+      "password_hash": "$2b$12$.6NGZrF8Df0Uzl3KYYjD5eqf2UTh749hRXg9JTxFDB9c64a4NzZEu",
+      "full_name": "Driver One",
+      "email": "driver1@spicegarden.com",
+      "phone": "+919876543211",
+      "role": "driver",
+      "restaurant_id": 1,
+      "branch_id": 1,
+      "is_active": true,
+      "created_at": "2026-06-09T17:34:32.475919+00:00",
+      "updated_at": "2026-06-09T17:34:32.475919+00:00"
+    },
+    {
+      "username": "nageswararaotelukutla77@gmail.com",
+      "email": "nageswararaotelukutla77@gmail.com",
+      "password_hash": "$2b$12$PX2NtK760KwsD.XjarAh2OiM9qQAg91nQAw2t.ZKNw1PArWWR9L3S",
+      "full_name": "Nageswara Rao Telukutla",
+      "phone": "9885418917",
+      "role": "customer",
+      "is_customer": true,
+      "restaurant_id": null,
+      "branch_id": null,
+      "is_active": true,
+      "created_at": "2026-06-09T17:37:12.724522+00:00",
+      "updated_at": "2026-06-09T17:37:12.724522+00:00",
+      "id": 5
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "payments": [
+    {
+      "restaurant_order_id": "ORD-20260003",
+      "restaurant_order_pk": 3,
+      "razorpay_order_id": "order_SzcjUzxHYNrsd9",
+      "razorpay_payment_id": null,
+      "amount": 189.0,
+      "amount_paise": 18900,
+      "currency": "INR",
+      "status": "failed",
+      "method": null,
+      "failure_reason": "payment_failed",
+      "customer_name": "Nageswara Rao Telukutla",
+      "phone": "9885418917",
+      "id": "PAY-6C88B5ED4D19",
+      "created_at": "2026-06-09T17:59:34.159280+00:00",
+      "updated_at": "2026-06-09T18:01:44.197487+00:00"
+    }
+  ]
+}

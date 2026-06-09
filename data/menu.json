@@ -1,0 +1,282 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Paneer Tikka",
+      "description": "Grilled cottage cheese with spices",
+      "price": 180,
+      "image": "paneer-tikka.jpg",
+      "available": true,
+      "category": "Starters"
+    },
+    {
+      "id": 2,
+      "name": "Chicken 65",
+      "description": "Spicy deep-fried chicken bites",
+      "price": 220,
+      "image": "chicken-65.jpg",
+      "available": true,
+      "category": "Starters"
+    },
+    {
+      "id": 3,
+      "name": "Veg Spring Rolls",
+      "description": "Crispy rolls with vegetable filling",
+      "price": 150,
+      "image": "spring-rolls.jpg",
+      "available": true,
+      "category": "Starters"
+    },
+    {
+      "id": 4,
+      "name": "Fish Amritsari",
+      "description": "Batter-fried fish with tangy spices",
+      "price": 260,
+      "image": "fish-amritsari.jpg",
+      "available": true,
+      "category": "Starters"
+    },
+    {
+      "id": 5,
+      "name": "Mushroom Pepper Fry",
+      "description": "Sautéed mushrooms with black pepper",
+      "price": 170,
+      "image": "mushroom-pepper.jpg",
+      "available": true,
+      "category": "Starters"
+    },
+    {
+      "id": 6,
+      "name": "Tomato Soup",
+      "description": "Classic creamy tomato soup",
+      "price": 90,
+      "image": "tomato-soup.jpg",
+      "available": true,
+      "category": "Soups"
+    },
+    {
+      "id": 7,
+      "name": "Sweet Corn Soup",
+      "description": "Velvety sweet corn soup",
+      "price": 95,
+      "image": "corn-soup.jpg",
+      "available": true,
+      "category": "Soups"
+    },
+    {
+      "id": 8,
+      "name": "Hot & Sour Soup",
+      "description": "Tangy Indo-Chinese soup",
+      "price": 100,
+      "image": "hot-sour-soup.jpg",
+      "available": true,
+      "category": "Soups"
+    },
+    {
+      "id": 9,
+      "name": "Mutton Bone Soup",
+      "description": "Slow-cooked mutton broth",
+      "price": 140,
+      "image": "mutton-soup.jpg",
+      "available": true,
+      "category": "Soups"
+    },
+    {
+      "id": 10,
+      "name": "Dal Palak",
+      "description": "Lentils cooked with spinach",
+      "price": 160,
+      "image": "dal-palak.jpg",
+      "available": true,
+      "category": "Main Course"
+    },
+    {
+      "id": 11,
+      "name": "Butter Chicken",
+      "description": "Creamy tomato-based chicken curry",
+      "price": 280,
+      "image": "butter-chicken.jpg",
+      "available": true,
+      "category": "Main Course"
+    },
+    {
+      "id": 12,
+      "name": "Veg Kolhapuri",
+      "description": "Spicy mixed vegetable curry",
+      "price": 200,
+      "image": "veg-kolhapuri.jpg",
+      "available": true,
+      "category": "Main Course"
+    },
+    {
+      "id": 13,
+      "name": "Fish Curry",
+      "description": "Coastal style fish in coconut gravy",
+      "price": 300,
+      "image": "fish-curry.jpg",
+      "available": true,
+      "category": "Main Course"
+    },
+    {
+      "id": 14,
+      "name": "Paneer Butter Masala",
+      "description": "Rich paneer in buttery gravy",
+      "price": 240,
+      "image": "paneer-butter.jpg",
+      "available": true,
+      "category": "Main Course"
+    },
+    {
+      "id": 15,
+      "name": "Egg Curry",
+      "description": "Boiled eggs in spiced onion gravy",
+      "price": 180,
+      "image": "egg-curry.jpg",
+      "available": true,
+      "category": "Main Course"
+    },
+    {
+      "id": 16,
+      "name": "Chicken Biryani",
+      "description": "Traditional Dum Biryani",
+      "price": 220,
+      "image": "chicken-biryani.jpg",
+      "available": true,
+      "category": "Biryani"
+    },
+    {
+      "id": 17,
+      "name": "Mutton Biryani",
+      "description": "Aromatic mutton layered biryani",
+      "price": 320,
+      "image": "mutton-biryani.jpg",
+      "available": true,
+      "category": "Biryani"
+    },
+    {
+      "id": 18,
+      "name": "Veg Biryani",
+      "description": "Fragrant vegetable biryani",
+      "price": 180,
+      "image": "veg-biryani.jpg",
+      "available": true,
+      "category": "Biryani"
+    },
+    {
+      "id": 19,
+      "name": "Egg Biryani",
+      "description": "Spiced rice with boiled eggs",
+      "price": 160,
+      "image": "egg-biryani.jpg",
+      "available": true,
+      "category": "Biryani"
+    },
+    {
+      "id": 20,
+      "name": "Paneer Biryani",
+      "description": "Cottage cheese dum biryani",
+      "price": 200,
+      "image": "paneer-biryani.jpg",
+      "available": true,
+      "category": "Biryani"
+    },
+    {
+      "id": 21,
+      "name": "Fresh Lime Soda",
+      "description": "Chilled sweet or salted lime soda",
+      "price": 60,
+      "image": "lime-soda.jpg",
+      "available": true,
+      "category": "Beverages"
+    },
+    {
+      "id": 22,
+      "name": "Mango Lassi",
+      "description": "Thick yogurt mango drink",
+      "price": 80,
+      "image": "mango-lassi.jpg",
+      "available": true,
+      "category": "Beverages"
+    },
+    {
+      "id": 23,
+      "name": "Masala Chai",
+      "description": "Indian spiced tea",
+      "price": 40,
+      "image": "masala-chai.jpg",
+      "available": true,
+      "category": "Beverages"
+    },
+    {
+      "id": 24,
+      "name": "Cold Coffee",
+      "description": "Blended iced coffee",
+      "price": 90,
+      "image": "cold-coffee.jpg",
+      "available": true,
+      "category": "Beverages"
+    },
+    {
+      "id": 25,
+      "name": "Mineral Water",
+      "description": "500ml packaged water",
+      "price": 30,
+      "image": "water.jpg",
+      "available": true,
+      "category": "Beverages"
+    },
+    {
+      "id": 26,
+      "name": "Gulab Jamun",
+      "description": "Milk dumplings in sugar syrup",
+      "price": 80,
+      "image": "gulab-jamun.jpg",
+      "available": true,
+      "category": "Desserts"
+    },
+    {
+      "id": 27,
+      "name": "Rasmalai",
+      "description": "Soft cheese patties in saffron milk",
+      "price": 100,
+      "image": "rasmalai.jpg",
+      "available": true,
+      "category": "Desserts"
+    },
+    {
+      "id": 28,
+      "name": "Ice Cream Scoop",
+      "description": "Choice of vanilla or chocolate",
+      "price": 70,
+      "image": "ice-cream.jpg",
+      "available": true,
+      "category": "Desserts"
+    },
+    {
+      "id": 29,
+      "name": "Brownie with Ice Cream",
+      "description": "Warm brownie topped with ice cream",
+      "price": 150,
+      "image": "brownie.jpg",
+      "available": true,
+      "category": "Desserts"
+    },
+    {
+      "id": 30,
+      "name": "Fruit Salad",
+      "description": "Seasonal fresh fruit bowl",
+      "price": 90,
+      "image": "fruit-salad.jpg",
+      "available": true,
+      "category": "Desserts"
+    }
+  ],
+  "categories": [
+    "Starters",
+    "Soups",
+    "Main Course",
+    "Biryani",
+    "Beverages",
+    "Desserts"
+  ]
+}
