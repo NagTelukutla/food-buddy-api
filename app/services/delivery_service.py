@@ -248,7 +248,14 @@ class DeliveryService:
             if a["order_id"] not in claimed_ids and self._is_available_for_driver(a, partner["restaurant_id"])
         ]
         combined = available + partner_assignments
-        items = [self._build_assignment_detail(a) for a in combined]
+        items = []
+        for a in combined:
+            try:
+                items.append(self._build_assignment_detail(a))
+            except HTTPException as e:
+                if e.status_code == status.HTTP_404_NOT_FOUND and e.detail == "Order not found":
+                    continue
+                raise e
         return DeliveryAssignmentListResponse(items=items)
 
     def get_partner_report(self, user: dict) -> DeliveryReportResponse:
