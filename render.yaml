@@ -27,9 +27,9 @@ services:
       - key: CORS_ORIGINS
         sync: false
       - key: DATABASE_URL
-        value: sqlite:////var/data/restaurant.db
+        value: sqlite:///data/restaurant.db
       - key: DATA_DIR
-        value: /var/data/json
+        value: ./data
       - key: TAX_RATE
         value: "0.05"
       - key: ORDER_ID_PREFIX
@@ -50,7 +50,3 @@ services:
         value: "17.435886"
       - key: GEOCODE_FALLBACK_LNG
         value: "78.3618"
-    disk:
-      name: food-buddy-data
-      mountPath: /var/data
-      sizeGB: 1
