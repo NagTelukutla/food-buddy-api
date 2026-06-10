@@ -1,7 +1,7 @@
 # Secrets — never commit real values
-#.env
-#.env.local
-#.env.*.local
+.env
+.env.local
+.env.*.local
 !.env.example
 !.env.production
 
