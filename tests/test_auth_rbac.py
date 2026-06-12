@@ -98,7 +98,7 @@ class AuthRBACTests(unittest.TestCase):
         """Usernames are matched case-insensitively without spaces."""
         login = client.post(
             "/api/auth/login",
-            json={"username": "ADMIN3", "password": "admin123"},
+            json={"username": "ADM IN", "password": "admin123"},
         )
         self.assertEqual(login.status_code, 200)
 

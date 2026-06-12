@@ -23,13 +23,16 @@ def geocode_address(
 ) -> Tuple[float, float]:
     """Resolve address to coordinates. Uses Nominatim with deterministic fallback."""
     settings = get_settings()
-    base_lat = fallback_lat if fallback_lat is not None else settings.geocode_fallback_lat
-    base_lng = fallback_lng if fallback_lng is not None else settings.geocode_fallback_lng
+    if fallback_lat is None or fallback_lng is None:
+        raise ValueError("Dynamic base coordinates must be provided for geocoding")
+    
+    base_lat = fallback_lat
+    base_lng = fallback_lng
 
     if not address or not address.strip():
         return base_lat, base_lng
     try:
-        query = urllib.parse.quote(f"{address.strip()}, Hyderabad, Telangana, India")
+        query = urllib.parse.quote(address.strip())
         url = f"https://nominatim.openstreetmap.org/search?q={query}&format=json&limit=1"
         req = urllib.request.Request(url, headers={"User-Agent": settings.geocode_user_agent})
         with urllib.request.urlopen(req, timeout=6) as resp:
@@ -38,4 +41,4 @@ def geocode_address(
                 return round(float(data[0]["lat"]), 6), round(float(data[0]["lon"]), 6)
     except Exception:
         pass
-    return _fallback_coords(address, fallback_lat, fallback_lng)
+    return _fallback_coords(address, base_lat, base_lng)

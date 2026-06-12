@@ -354,12 +354,32 @@ class DeliveryService:
             self.delivery_repo.clear_driver_location(order_id)
         return self._build_assignment_detail(updated)
 
-    def _restaurant_point(self, restaurant_id: int = 1) -> MapPoint:
-        restaurant = self.restaurant_repo.get_by_id(restaurant_id) if self.restaurant_repo else None
-        lat = float(restaurant.get("latitude", DEFAULT_RESTAURANT_LAT)) if restaurant else DEFAULT_RESTAURANT_LAT
-        lng = float(restaurant.get("longitude", DEFAULT_RESTAURANT_LNG)) if restaurant else DEFAULT_RESTAURANT_LNG
-        name = restaurant.get("name", "Restaurant") if restaurant else "Restaurant"
-        return MapPoint(latitude=lat, longitude=lng, label=name)
+    def _restaurant_point(self, restaurant_id: int | None = None) -> MapPoint:
+        restaurant = None
+        if self.restaurant_repo:
+            if restaurant_id is not None:
+                restaurant = self.restaurant_repo.get_by_id(restaurant_id)
+            if not restaurant:
+                active = self.restaurant_repo.get_all(active_only=True)
+                if active:
+                    restaurant = active[0]
+
+        if not restaurant:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Restaurant details not found for location tracking."
+            )
+
+        if restaurant.get("latitude") is None or restaurant.get("longitude") is None:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"Restaurant '{restaurant.get('name')}' is missing location coordinates."
+            )
+
+        lat = float(restaurant["latitude"])
+        lng = float(restaurant["longitude"])
+        label = restaurant.get("address") or restaurant.get("name") or "Restaurant"
+        return MapPoint(latitude=lat, longitude=lng, label=label)
 
     def update_driver_location(self, user_id: int, payload: DriverLocationUpdate) -> DriverLiveLocation:
         partner = self.delivery_repo.get_partner_by_user(user_id)

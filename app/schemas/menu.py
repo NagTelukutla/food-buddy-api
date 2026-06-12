@@ -19,6 +19,7 @@ class MenuItemBase(BaseModel):
     image: str = Field(default="default.jpg", max_length=200)
     available: bool = True
     category: str
+    restaurant_id: Optional[int] = 1
 
     @field_validator("category")
     @classmethod

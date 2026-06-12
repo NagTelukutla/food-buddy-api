@@ -11,27 +11,35 @@
       "status": "busy",
       "is_active": true,
       "created_at": "2026-06-09T17:34:32.475919+00:00",
-      "updated_at": "2026-06-09T18:04:49.037211+00:00"
+      "updated_at": "2026-06-12T18:57:20.971895+00:00"
     }
   ],
   "assignments": [
     {
       "order_id": "ORD-20260003",
       "delivery_partner_id": 1,
-      "delivery_status": "accepted",
+      "delivery_status": "delivered",
       "created_at": "2026-06-09T18:04:08.378966+00:00",
-      "updated_at": "2026-06-09T18:04:49.021606+00:00",
+      "updated_at": "2026-06-12T18:57:06.976591+00:00",
       "id": 1
+    },
+    {
+      "order_id": "ORD-20260004",
+      "delivery_partner_id": 1,
+      "delivery_status": "out_for_delivery",
+      "created_at": "2026-06-12T18:57:10.781614+00:00",
+      "updated_at": "2026-06-12T18:58:45.476342+00:00",
+      "id": 2
     }
   ],
   "driver_locations": [
     {
-      "order_id": "ORD-20260003",
+      "order_id": "ORD-20260004",
       "delivery_partner_id": 1,
-      "latitude": 17.44071481848976,
-      "longitude": 78.36371176317824,
-      "created_at": "2026-06-09T18:05:21.773458+00:00",
-      "updated_at": "2026-06-09T20:15:50.432353+00:00",
+      "latitude": 17.4405981485171,
+      "longitude": 78.36374180840927,
+      "created_at": "2026-06-12T18:57:25.676403+00:00",
+      "updated_at": "2026-06-12T18:59:09.257121+00:00",
       "id": 1
     }
   ]

@@ -17,6 +17,8 @@ class RestaurantBase(BaseModel):
     address: Optional[str] = None
     cuisine_type: Optional[str] = None
     working_hours: Optional[str] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
 
 
 class RestaurantCreate(RestaurantBase):
@@ -37,6 +39,8 @@ class RestaurantUpdate(BaseModel):
     cuisine_type: Optional[str] = None
     working_hours: Optional[str] = None
     is_active: Optional[bool] = None
+    latitude: Optional[float] = None
+    longitude: Optional[float] = None
 
 
 class RestaurantResponse(RestaurantBase):

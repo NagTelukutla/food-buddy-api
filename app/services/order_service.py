@@ -123,22 +123,38 @@ class OrderService:
         )
         created = self.order_repository.create(order, order_items)
         if self.order_metadata_repository:
+            restaurant_id = payload.restaurant_id or self._default_restaurant_id()
+            restaurant = None
+            if self.restaurant_repository:
+                restaurant = self.restaurant_repository.get_by_id(restaurant_id)
+            if not restaurant:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=f"Restaurant with ID {restaurant_id} not found"
+                )
+            if restaurant.get("latitude") is None or restaurant.get("longitude") is None:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail=f"Restaurant '{restaurant.get('name')}' is missing location coordinates"
+                )
+            
             metadata = {
-                "restaurant_id": self._default_restaurant_id(),
+                "restaurant_id": restaurant_id,
                 "customer_id": customer_id,
                 "order_type": payload.order_type,
             }
             if payload.delivery_address:
                 addr = payload.delivery_address.strip()
                 metadata["delivery_address"] = addr
-                restaurant = None
-                if self.restaurant_repository:
-                    restaurant = self.restaurant_repository.get_by_id(self._default_restaurant_id())
-                base_lat = float(restaurant.get("latitude", 17.435886)) if restaurant else 17.435886
-                base_lng = float(restaurant.get("longitude", 78.3618)) if restaurant else 78.3618
-                lat, lng = geocode_address(addr, base_lat, base_lng)
-                metadata["delivery_lat"] = lat
-                metadata["delivery_lng"] = lng
+                if payload.delivery_lat is not None and payload.delivery_lng is not None:
+                    metadata["delivery_lat"] = payload.delivery_lat
+                    metadata["delivery_lng"] = payload.delivery_lng
+                else:
+                    base_lat = float(restaurant["latitude"])
+                    base_lng = float(restaurant["longitude"])
+                    lat, lng = geocode_address(addr, base_lat, base_lng)
+                    metadata["delivery_lat"] = lat
+                    metadata["delivery_lng"] = lng
             self.order_metadata_repository.upsert(order_id, metadata)
         self.audit_repository.create(
             action="CREATE",

@@ -38,7 +38,13 @@ class MenuService:
         if available_only:
             items = [item for item in items if item.get("available", True)]
         return MenuListResponse(
-            items=[MenuItemResponse(**item) for item in items],
+            items=[
+                MenuItemResponse(
+                    restaurant_id=item.get("restaurant_id") or 1,
+                    **{k: v for k, v in item.items() if k != "restaurant_id"}
+                )
+                for item in items
+            ],
             categories=self.menu_repository.get_categories(),
         )
 
@@ -46,7 +52,10 @@ class MenuService:
         item = self.menu_repository.get_by_id(item_id, restaurant_id)
         if not item:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Menu item not found")
-        return MenuItemResponse(**item)
+        return MenuItemResponse(
+            restaurant_id=item.get("restaurant_id") or 1,
+            **{k: v for k, v in item.items() if k != "restaurant_id"}
+        )
 
     def create_item(
         self,

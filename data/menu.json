@@ -7,7 +7,8 @@
       "price": 180,
       "image": "paneer-tikka.jpg",
       "available": true,
-      "category": "Starters"
+      "category": "Starters",
+      "restaurant_id": 1
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "price": 220,
       "image": "chicken-65.jpg",
       "available": true,
-      "category": "Starters"
+      "category": "Starters",
+      "restaurant_id": 1
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "price": 150,
       "image": "spring-rolls.jpg",
       "available": true,
-      "category": "Starters"
+      "category": "Starters",
+      "restaurant_id": 1
     },
     {
       "id": 4,
@@ -34,16 +37,18 @@
       "price": 260,
       "image": "fish-amritsari.jpg",
       "available": true,
-      "category": "Starters"
+      "category": "Starters",
+      "restaurant_id": 1
     },
     {
       "id": 5,
       "name": "Mushroom Pepper Fry",
-      "description": "Sautéed mushrooms with black pepper",
+      "description": "Saut\u00c3\u00a9ed mushrooms with black pepper",
       "price": 170,
       "image": "mushroom-pepper.jpg",
       "available": true,
-      "category": "Starters"
+      "category": "Starters",
+      "restaurant_id": 1
     },
     {
       "id": 6,
@@ -52,7 +57,8 @@
       "price": 90,
       "image": "tomato-soup.jpg",
       "available": true,
-      "category": "Soups"
+      "category": "Soups",
+      "restaurant_id": 1
     },
     {
       "id": 7,
@@ -61,7 +67,8 @@
       "price": 95,
       "image": "corn-soup.jpg",
       "available": true,
-      "category": "Soups"
+      "category": "Soups",
+      "restaurant_id": 1
     },
     {
       "id": 8,
@@ -70,7 +77,8 @@
       "price": 100,
       "image": "hot-sour-soup.jpg",
       "available": true,
-      "category": "Soups"
+      "category": "Soups",
+      "restaurant_id": 1
     },
     {
       "id": 9,
@@ -79,7 +87,8 @@
       "price": 140,
       "image": "mutton-soup.jpg",
       "available": true,
-      "category": "Soups"
+      "category": "Soups",
+      "restaurant_id": 1
     },
     {
       "id": 10,
@@ -88,7 +97,8 @@
       "price": 160,
       "image": "dal-palak.jpg",
       "available": true,
-      "category": "Main Course"
+      "category": "Main Course",
+      "restaurant_id": 1
     },
     {
       "id": 11,
@@ -97,7 +107,8 @@
       "price": 280,
       "image": "butter-chicken.jpg",
       "available": true,
-      "category": "Main Course"
+      "category": "Main Course",
+      "restaurant_id": 1
     },
     {
       "id": 12,
@@ -106,7 +117,8 @@
       "price": 200,
       "image": "veg-kolhapuri.jpg",
       "available": true,
-      "category": "Main Course"
+      "category": "Main Course",
+      "restaurant_id": 1
     },
     {
       "id": 13,
@@ -115,7 +127,8 @@
       "price": 300,
       "image": "fish-curry.jpg",
       "available": true,
-      "category": "Main Course"
+      "category": "Main Course",
+      "restaurant_id": 1
     },
     {
       "id": 14,
@@ -124,7 +137,8 @@
       "price": 240,
       "image": "paneer-butter.jpg",
       "available": true,
-      "category": "Main Course"
+      "category": "Main Course",
+      "restaurant_id": 1
     },
     {
       "id": 15,
@@ -133,7 +147,8 @@
       "price": 180,
       "image": "egg-curry.jpg",
       "available": true,
-      "category": "Main Course"
+      "category": "Main Course",
+      "restaurant_id": 1
     },
     {
       "id": 16,
@@ -142,7 +157,8 @@
       "price": 220,
       "image": "chicken-biryani.jpg",
       "available": true,
-      "category": "Biryani"
+      "category": "Biryani",
+      "restaurant_id": 2
     },
     {
       "id": 17,
@@ -151,7 +167,8 @@
       "price": 320,
       "image": "mutton-biryani.jpg",
       "available": true,
-      "category": "Biryani"
+      "category": "Biryani",
+      "restaurant_id": 2
     },
     {
       "id": 18,
@@ -160,7 +177,8 @@
       "price": 180,
       "image": "veg-biryani.jpg",
       "available": true,
-      "category": "Biryani"
+      "category": "Biryani",
+      "restaurant_id": 2
     },
     {
       "id": 19,
@@ -169,7 +187,8 @@
       "price": 160,
       "image": "egg-biryani.jpg",
       "available": true,
-      "category": "Biryani"
+      "category": "Biryani",
+      "restaurant_id": 2
     },
     {
       "id": 20,
@@ -178,7 +197,8 @@
       "price": 200,
       "image": "paneer-biryani.jpg",
       "available": true,
-      "category": "Biryani"
+      "category": "Biryani",
+      "restaurant_id": 2
     },
     {
       "id": 21,
@@ -187,7 +207,8 @@
       "price": 60,
       "image": "lime-soda.jpg",
       "available": true,
-      "category": "Beverages"
+      "category": "Beverages",
+      "restaurant_id": 2
     },
     {
       "id": 22,
@@ -196,7 +217,8 @@
       "price": 80,
       "image": "mango-lassi.jpg",
       "available": true,
-      "category": "Beverages"
+      "category": "Beverages",
+      "restaurant_id": 2
     },
     {
       "id": 23,
@@ -205,7 +227,8 @@
       "price": 40,
       "image": "masala-chai.jpg",
       "available": true,
-      "category": "Beverages"
+      "category": "Beverages",
+      "restaurant_id": 2
     },
     {
       "id": 24,
@@ -214,7 +237,8 @@
       "price": 90,
       "image": "cold-coffee.jpg",
       "available": true,
-      "category": "Beverages"
+      "category": "Beverages",
+      "restaurant_id": 2
     },
     {
       "id": 25,
@@ -223,7 +247,8 @@
       "price": 30,
       "image": "water.jpg",
       "available": true,
-      "category": "Beverages"
+      "category": "Beverages",
+      "restaurant_id": 2
     },
     {
       "id": 26,
@@ -232,7 +257,8 @@
       "price": 80,
       "image": "gulab-jamun.jpg",
       "available": true,
-      "category": "Desserts"
+      "category": "Desserts",
+      "restaurant_id": 2
     },
     {
       "id": 27,
@@ -241,7 +267,8 @@
       "price": 100,
       "image": "rasmalai.jpg",
       "available": true,
-      "category": "Desserts"
+      "category": "Desserts",
+      "restaurant_id": 2
     },
     {
       "id": 28,
@@ -250,7 +277,8 @@
       "price": 70,
       "image": "ice-cream.jpg",
       "available": true,
-      "category": "Desserts"
+      "category": "Desserts",
+      "restaurant_id": 2
     },
     {
       "id": 29,
@@ -259,7 +287,8 @@
       "price": 150,
       "image": "brownie.jpg",
       "available": true,
-      "category": "Desserts"
+      "category": "Desserts",
+      "restaurant_id": 2
     },
     {
       "id": 30,
@@ -268,7 +297,8 @@
       "price": 90,
       "image": "fruit-salad.jpg",
       "available": true,
-      "category": "Desserts"
+      "category": "Desserts",
+      "restaurant_id": 2
     }
   ],
   "categories": [

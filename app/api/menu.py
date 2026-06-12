@@ -17,10 +17,12 @@ def list_menu(
     search: Optional[str] = Query(None),
     category: Optional[str] = Query(None),
     available_only: bool = Query(False),
+    restaurant_id: Optional[int] = Query(None),
     tenant: Optional[TenantContext] = Depends(get_optional_tenant_context),
     menu_service: MenuService = Depends(get_menu_service),
 ) -> MenuListResponse:
-    restaurant_id = require_admin_tenant(tenant) if tenant and tenant.is_admin else None
+    if tenant and tenant.is_admin:
+        restaurant_id = require_admin_tenant(tenant)
     return menu_service.list_menu(search, category, available_only, restaurant_id)
 
 

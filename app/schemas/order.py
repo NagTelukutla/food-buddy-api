@@ -28,6 +28,9 @@ class OrderCreate(BaseModel):
     table_number: Optional[str] = Field(None, max_length=20)
     order_type: OrderType
     delivery_address: Optional[str] = Field(None, max_length=500)
+    delivery_lat: Optional[float] = Field(None)
+    delivery_lng: Optional[float] = Field(None)
+    restaurant_id: Optional[int] = Field(None)
     notes: Optional[str] = Field(None, max_length=500)
     items: List[OrderItemCreate] = Field(..., min_length=1)
 
