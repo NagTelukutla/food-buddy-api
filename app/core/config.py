@@ -38,6 +38,8 @@ class Settings(BaseSettings):
     geocode_fallback_lat: float = 17.435886
     geocode_fallback_lng: float = 78.3618
 
+    delivery_partner_order_radius_km: float = 30.0
+
     @property
     def is_production(self) -> bool:
         return self.app_env.lower() in ("production", "staging")
@@ -81,6 +83,8 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def validate_environment(self) -> "Settings":
+        radius = float(self.delivery_partner_order_radius_km)
+        object.__setattr__(self, "delivery_partner_order_radius_km", min(30.0, max(25.0, radius)))
         if self.is_production:
             if not self.secret_key or len(self.secret_key) < 32:
                 raise ValueError(

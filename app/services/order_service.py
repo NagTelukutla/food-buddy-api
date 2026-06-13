@@ -231,6 +231,23 @@ class OrderService:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found")
         return self._to_response(order)
 
+    def _restaurant_info_for_order(self, order_id: str) -> tuple[Optional[str], Optional[str]]:
+        restaurant_name = None
+        restaurant_address = None
+        if not self.order_metadata_repository or not self.restaurant_repository:
+            return restaurant_name, restaurant_address
+        metadata = self.order_metadata_repository.get_by_order_id(order_id)
+        if not metadata:
+            return restaurant_name, restaurant_address
+        restaurant_id = metadata.get("restaurant_id")
+        if restaurant_id is None:
+            return restaurant_name, restaurant_address
+        restaurant = self.restaurant_repository.get_by_id(restaurant_id)
+        if restaurant:
+            restaurant_name = restaurant.get("name")
+            restaurant_address = restaurant.get("address")
+        return restaurant_name, restaurant_address
+
     def track_order(self, order_id: str) -> OrderTrackResponse:
         order = self.order_repository.get_by_order_id(order_id)
         if not order:
@@ -243,6 +260,7 @@ class OrderService:
             if assignment:
                 delivery_status = assignment.get("delivery_status")
                 live_tracking_enabled = delivery_status in LIVE_TRACKING_STATUSES
+        restaurant_name, restaurant_address = self._restaurant_info_for_order(order_id)
         return OrderTrackResponse(
             order_id=response.order_id,
             customer_name=response.customer_name,
@@ -254,6 +272,8 @@ class OrderService:
             items=response.items,
             delivery_status=delivery_status,
             live_tracking_enabled=live_tracking_enabled,
+            restaurant_name=restaurant_name,
+            restaurant_address=restaurant_address,
         )
 
     def update_status(

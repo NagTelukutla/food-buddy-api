@@ -62,8 +62,9 @@ class UserService:
         if payload.role == "admin":
             restaurant_id = None
             branch_id = None
-        elif payload.role == "driver" and restaurant_id and not branch_id:
-            branch_id = self._resolve_driver_branch_id(restaurant_id)
+        elif payload.role == "driver":
+            restaurant_id = None
+            branch_id = None
         created = self.user_repo.create(
             username=payload.username,
             email=payload.email,
@@ -101,5 +102,8 @@ class UserService:
         if effective_role == "admin":
             updates.pop("restaurant_id", None)
             updates.pop("branch_id", None)
+        elif effective_role == "driver":
+            updates["restaurant_id"] = None
+            updates["branch_id"] = None
         updated = self.user_repo.update(user_id, updates)
         return self._to_response(updated)

@@ -89,18 +89,18 @@
       "restaurant_order_id": "ORD-20260008",
       "restaurant_order_pk": 8,
       "razorpay_order_id": "order_T1CWUuDavyQJGa",
-      "razorpay_payment_id": "pay_T1CYcfR1ryClnT",
+      "razorpay_payment_id": null,
       "amount": 261.45,
       "amount_paise": 26145,
       "currency": "INR",
-      "status": "paid",
-      "method": "card",
+      "status": "created",
+      "method": null,
       "failure_reason": null,
       "customer_name": "Nageswara Rao Telukutla",
       "phone": "9885418917",
       "id": "PAY-87C932A38DF3",
       "created_at": "2026-06-13T17:39:15.504740+00:00",
-      "updated_at": "2026-06-13T17:41:37.122225+00:00"
+      "updated_at": "2026-06-13T17:39:15.504740+00:00"
     }
   ]
 }

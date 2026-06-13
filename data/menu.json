@@ -299,6 +299,166 @@
       "available": true,
       "category": "Desserts",
       "restaurant_id": 2
+    },
+    {
+      "id": 31,
+      "name": "Chicken Dum Biryani",
+      "description": "Classic Hyderabadi chicken dum biryani",
+      "price": 249,
+      "image": "chicken-biryani.jpg",
+      "available": true,
+      "category": "Biryani",
+      "restaurant_id": 3
+    },
+    {
+      "id": 32,
+      "name": "Mutton Biryani",
+      "description": "Slow-cooked mutton layered biryani",
+      "price": 349,
+      "image": "mutton-biryani.jpg",
+      "available": true,
+      "category": "Biryani",
+      "restaurant_id": 3
+    },
+    {
+      "id": 33,
+      "name": "Prawn Biryani",
+      "description": "Fragrant rice with spiced prawns",
+      "price": 329,
+      "image": "prawn-biryani.jpg",
+      "available": true,
+      "category": "Biryani",
+      "restaurant_id": 3
+    },
+    {
+      "id": 34,
+      "name": "Veg Fried Rice",
+      "description": "Wok-tossed rice with mixed vegetables",
+      "price": 189,
+      "image": "veg-fried-rice.jpg",
+      "available": true,
+      "category": "Chinese",
+      "restaurant_id": 3
+    },
+    {
+      "id": 35,
+      "name": "Chilli Chicken",
+      "description": "Crispy chicken in spicy Indo-Chinese sauce",
+      "price": 229,
+      "image": "chilli-chicken.jpg",
+      "available": true,
+      "category": "Chinese",
+      "restaurant_id": 3
+    },
+    {
+      "id": 36,
+      "name": "Sichuan Noodles",
+      "description": "Spicy Sichuan-style veg noodles",
+      "price": 199,
+      "image": "sichuan-noodles.jpg",
+      "available": true,
+      "category": "Chinese",
+      "restaurant_id": 3
+    },
+    {
+      "id": 37,
+      "name": "Apollo Fish",
+      "description": "Crispy fried fish with house masala",
+      "price": 279,
+      "image": "apollo-fish.jpg",
+      "available": true,
+      "category": "Seafood",
+      "restaurant_id": 3
+    },
+    {
+      "id": 38,
+      "name": "Butter Garlic Prawns",
+      "description": "Juicy prawns tossed in butter garlic sauce",
+      "price": 359,
+      "image": "garlic-prawns.jpg",
+      "available": true,
+      "category": "Seafood",
+      "restaurant_id": 3
+    },
+    {
+      "id": 39,
+      "name": "Raita",
+      "description": "Cool yogurt side for biryani",
+      "price": 49,
+      "image": "raita.jpg",
+      "available": true,
+      "category": "Starters",
+      "restaurant_id": 3
+    },
+    {
+      "id": 40,
+      "name": "Hyderabadi Chicken Biryani",
+      "description": "Pista House signature chicken biryani",
+      "price": 279,
+      "image": "chicken-biryani.jpg",
+      "available": true,
+      "category": "Biryani",
+      "restaurant_id": 4
+    },
+    {
+      "id": 41,
+      "name": "Mutton Dum Biryani",
+      "description": "Premium mutton Hyderabadi dum biryani",
+      "price": 379,
+      "image": "mutton-biryani.jpg",
+      "available": true,
+      "category": "Biryani",
+      "restaurant_id": 4
+    },
+    {
+      "id": 42,
+      "name": "Haleem",
+      "description": "Slow-cooked Mughlai haleem with garnishes",
+      "price": 199,
+      "image": "haleem.jpg",
+      "available": true,
+      "category": "Main Course",
+      "restaurant_id": 4
+    },
+    {
+      "id": 43,
+      "name": "Chicken Shawarma Roll",
+      "description": "Middle Eastern chicken shawarma wrap",
+      "price": 149,
+      "image": "shawarma-roll.jpg",
+      "available": true,
+      "category": "Fast Food",
+      "restaurant_id": 4
+    },
+    {
+      "id": 44,
+      "name": "Mixed Kebab Platter",
+      "description": "Seekh, tikka, and boti kebab assortment",
+      "price": 399,
+      "image": "kebab-platter.jpg",
+      "available": true,
+      "category": "Main Course",
+      "restaurant_id": 4
+    },
+    {
+      "id": 45,
+      "name": "Double Ka Meetha",
+      "description": "Classic Hyderabadi bread pudding dessert",
+      "price": 99,
+      "image": "double-ka-meetha.jpg",
+      "available": true,
+      "category": "Desserts",
+      "restaurant_id": 4
+    },
+    {
+      "id": 46,
+      "name": "Pista House Special Biryani",
+      "description": "Chef's special recipe with extra masala and saffron",
+      "price": 329,
+      "image": "special-biryani.jpg",
+      "available": true,
+      "category": "Biryani",
+      "restaurant_id": 4
     }
   ],
   "categories": [
@@ -307,6 +467,9 @@
     "Main Course",
     "Biryani",
     "Beverages",
-    "Desserts"
+    "Desserts",
+    "Chinese",
+    "Seafood",
+    "Fast Food"
   ]
 }

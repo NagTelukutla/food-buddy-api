@@ -9,4 +9,5 @@ Get-NetTCPConnection -LocalPort 8080 -ErrorAction SilentlyContinue |
   ForEach-Object { Stop-Process -Id $_ -Force -ErrorAction SilentlyContinue }
 
 Write-Host "Starting API on http://127.0.0.1:8080 ..."
-& ".\venv\Scripts\uvicorn.exe" app.main:app --host 127.0.0.1 --port 8080
+& ".\venv\Scripts\python.exe" -m uvicorn app.main:app --host 127.0.0.1 --port 8080
+

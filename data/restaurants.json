@@ -14,7 +14,7 @@
           "subtitle": "Real taste of andhra — spices, soul, and tradition on every plate.",
           "cta_label": "Order Now",
           "cta_link": "/menu",
-          "accent": "from-dark-900 via-brand-900 to-brand-700",
+          "accent": "from-brand-900 to-brand-600",
           "image": "/slides/slide-1.svg"
         },
         {
@@ -22,7 +22,7 @@
           "subtitle": "Slow-cooked layers of fragrant rice and authentic Andhra masala.",
           "cta_label": "Order Now",
           "cta_link": "/menu",
-          "accent": "from-brand-900 via-brand-700 to-amber-700",
+          "accent": "from-brand-800 to-amber-400",
           "image": "/slides/slide-2.svg"
         },
         {
@@ -30,7 +30,7 @@
           "subtitle": "Enjoy at our restaurant or order fresh food ready for pickup.",
           "cta_label": "Order Now",
           "cta_link": "/menu",
-          "accent": "from-stone-900 via-brand-800 to-orange-800",
+          "accent": "from-stone-800 to-brand-700",
           "image": "/slides/slide-3.svg"
         },
         {
@@ -38,17 +38,17 @@
           "subtitle": "Starters, biryanis, curries, and desserts made the Andhra way.",
           "cta_label": "View Menu",
           "cta_link": "/menu",
-          "accent": "from-orange-900 via-brand-800 to-dark-900",
+          "accent": "from-brand-900 to-dark-900",
           "image": "/slides/slide-4.svg"
         }
       ],
       "email": "hotelabhiruchi@gmail.com",
       "phone": "9731116828",
       "address": "Hotel Abhiruchi - Andhra Style Restaurant, Kittur Rani Chennamma Circle, 2044, 25th Cross Rd, Hebbal 2nd Stage, Mysuru, Karnataka 570016",
-      "latitude": 17.435886,
-      "longitude": 78.3618,
-      "cuisine_type": "MySore",
-      "working_hours": "Tuesday – Sunday: 11 AM – 11 PM",
+      "latitude": 12.3388227,
+      "longitude": 76.609156,
+      "cuisine_type": "Mysore",
+      "working_hours": "Monday – Sunday: 11 AM – 11 PM",
       "owner_user_id": 1,
       "is_active": true,
       "created_at": "2026-06-09T17:34:32.475919+00:00",
@@ -68,7 +68,7 @@
           "subtitle": "Real taste of andhra — spices, soul, and tradition on every plate.",
           "cta_label": "Order Now",
           "cta_link": "/menu",
-          "accent": "from-dark-900 via-brand-900 to-brand-700",
+          "accent": "from-brand-900 to-brand-600",
           "image": "/slides/slide-1.svg"
         },
         {
@@ -76,7 +76,7 @@
           "subtitle": "Slow-cooked layers of fragrant rice and authentic Andhra masala.",
           "cta_label": "Order Now",
           "cta_link": "/menu",
-          "accent": "from-brand-900 via-brand-700 to-amber-700",
+          "accent": "from-brand-800 to-amber-400",
           "image": "/slides/slide-2.svg"
         },
         {
@@ -84,7 +84,7 @@
           "subtitle": "Enjoy at our restaurant or order fresh food ready for pickup.",
           "cta_label": "Order Now",
           "cta_link": "/menu",
-          "accent": "from-stone-900 via-brand-800 to-orange-800",
+          "accent": "from-stone-800 to-brand-700",
           "image": "/slides/slide-3.svg"
         },
         {
@@ -92,7 +92,7 @@
           "subtitle": "Starters, biryanis, curries, and desserts made the Andhra way.",
           "cta_label": "View Menu",
           "cta_link": "/menu",
-          "accent": "from-orange-900 via-brand-800 to-dark-900",
+          "accent": "from-brand-900 to-dark-900",
           "image": "/slides/slide-4.svg"
         }
       ],
@@ -107,6 +107,114 @@
       "is_active": true,
       "created_at": "2026-06-09T17:34:32.475919+00:00",
       "updated_at": "2026-06-09T17:34:32.475919+00:00"
+    },
+    {
+      "id": 3,
+      "name": "Biryanis And More",
+      "slug": "biryanis-and-more",
+      "tagline": "Biryani, Chinese, Sichuan & Seafood",
+      "description": "Biryanis And More in Gachibowli serves signature biryanis, Chinese favourites, Sichuan specials, and fresh seafood. A local favourite with strong delivery ratings — approx. ₹900 for two.",
+      "logo": "/logo.svg",
+      "hero_image": "/hero.jpg",
+      "hero_slides": [
+        {
+          "title": "Welcome to Biryanis And More",
+          "subtitle": "Biryani, Chinese, Sichuan, and seafood — all under one roof in Gachibowli.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-brand-900 to-brand-600",
+          "image": "/slides/slide-1.svg"
+        },
+        {
+          "title": "Signature Dum Biryani",
+          "subtitle": "Slow-cooked layers of fragrant rice and bold Hyderabadi masala.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-brand-800 to-amber-400",
+          "image": "/slides/slide-2.svg"
+        },
+        {
+          "title": "Chinese & Sichuan",
+          "subtitle": "Noodles, fried rice, and spicy Sichuan bowls made fresh to order.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-stone-800 to-brand-700",
+          "image": "/slides/slide-3.svg"
+        },
+        {
+          "title": "Fresh Seafood",
+          "subtitle": "Prawns, fish, and coastal specials — perfect with biryani on the side.",
+          "cta_label": "View Menu",
+          "cta_link": "/menu",
+          "accent": "from-brand-900 to-dark-900",
+          "image": "/slides/slide-4.svg"
+        }
+      ],
+      "email": "contact@biryanisandmore.com",
+      "phone": "+914023000022",
+      "address": "Door 2-1/6/FS.G4, Gachibowli, Hyderabad, Telangana 500032, India",
+      "latitude": 17.4453,
+      "longitude": 78.3638,
+      "cuisine_type": "Biryani, Chinese, Seafood",
+      "working_hours": "Monday – Sunday: 11 AM – 11 PM",
+      "owner_user_id": 6,
+      "is_active": true,
+      "created_at": "2026-06-13T10:00:00.000000+00:00",
+      "updated_at": "2026-06-13T10:00:00.000000+00:00"
+    },
+    {
+      "id": 4,
+      "name": "Pista House",
+      "slug": "pista-house",
+      "tagline": "Authentic Hyderabadi flavours",
+      "description": "Pista House Gachibowli is known for Hyderabadi biryani, Middle Eastern plates, Mughlai curries, and fast-food favourites near Care Hospital. Open late till 3 AM — approx. ₹1,000 for two.",
+      "logo": "/logo.svg",
+      "hero_image": "/hero.jpg",
+      "hero_slides": [
+        {
+          "title": "Welcome to Pista House",
+          "subtitle": "Hyderabadi biryani, Middle Eastern, Mughlai, and North Indian — Gachibowli.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-brand-900 to-brand-600",
+          "image": "/slides/slide-1.svg"
+        },
+        {
+          "title": "Hyderabadi Dum Biryani",
+          "subtitle": "Aromatic basmati, tender meat, and the real taste of Hyderabad.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-brand-800 to-amber-400",
+          "image": "/slides/slide-2.svg"
+        },
+        {
+          "title": "Middle Eastern & Mughlai",
+          "subtitle": "Kebabs, haleem, and rich gravies crafted for late-night cravings.",
+          "cta_label": "Order Now",
+          "cta_link": "/menu",
+          "accent": "from-stone-800 to-brand-700",
+          "image": "/slides/slide-3.svg"
+        },
+        {
+          "title": "Open Till 3 AM",
+          "subtitle": "Dine in or order delivery — open now from noon through the night.",
+          "cta_label": "View Menu",
+          "cta_link": "/menu",
+          "accent": "from-brand-900 to-dark-900",
+          "image": "/slides/slide-4.svg"
+        }
+      ],
+      "email": "gachibowli@pistahouse.com",
+      "phone": "+914023561234",
+      "address": "2-48, Plot 424, Opposite Care Hospital, Preston Prime Mall, Gachibowli, Hyderabad, Telangana 500032, India",
+      "latitude": 17.4436,
+      "longitude": 78.3578,
+      "cuisine_type": "Hyderabadi, Biryani, Mughlai",
+      "working_hours": "Daily: 12 PM – 3 AM",
+      "owner_user_id": 7,
+      "is_active": true,
+      "created_at": "2026-06-13T10:00:00.000000+00:00",
+      "updated_at": "2026-06-13T10:00:00.000000+00:00"
     }
   ]
 }

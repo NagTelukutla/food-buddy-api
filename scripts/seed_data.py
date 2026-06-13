@@ -66,7 +66,7 @@ HERO_SLIDES = [
         "subtitle": "Real taste of andhra — spices, soul, and tradition on every plate.",
         "cta_label": "Order Now",
         "cta_link": "/menu",
-        "accent": "from-dark-900 via-brand-900 to-brand-700",
+        "accent": "from-brand-900 to-brand-600",
         "image": "/slides/slide-1.svg",
     },
     {
@@ -74,7 +74,7 @@ HERO_SLIDES = [
         "subtitle": "Slow-cooked layers of fragrant rice and authentic Andhra masala.",
         "cta_label": "Order Now",
         "cta_link": "/menu",
-        "accent": "from-brand-900 via-brand-700 to-amber-700",
+        "accent": "from-brand-800 to-amber-400",
         "image": "/slides/slide-2.svg",
     },
     {
@@ -82,7 +82,7 @@ HERO_SLIDES = [
         "subtitle": "Enjoy at our restaurant or order fresh food ready for pickup.",
         "cta_label": "Order Now",
         "cta_link": "/menu",
-        "accent": "from-stone-900 via-brand-800 to-orange-800",
+        "accent": "from-stone-800 to-brand-700",
         "image": "/slides/slide-3.svg",
     },
     {
@@ -90,7 +90,7 @@ HERO_SLIDES = [
         "subtitle": "Starters, biryanis, curries, and desserts made the Andhra way.",
         "cta_label": "View Menu",
         "cta_link": "/menu",
-        "accent": "from-orange-900 via-brand-800 to-dark-900",
+        "accent": "from-brand-900 to-dark-900",
         "image": "/slides/slide-4.svg",
     },
 ]

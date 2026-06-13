@@ -1,5 +1,8 @@
+import math
+
 from fastapi import HTTPException, status
 
+from app.core.config import get_settings
 from app.core.order_workflow import (
     DELIVER_FROM,
     DRIVER_ACCEPT_FROM,
@@ -25,8 +28,10 @@ from app.schemas.delivery import (
     DeliveryStatusUpdate,
     DriverLiveLocation,
     DriverLocationUpdate,
+    DriverPartnerLocationUpdate,
     MapPoint,
 )
+from app.utils.geo import distance_km, is_valid_coord
 
 DELIVERY_TRANSITIONS = {
     "pending_acceptance": {"accepted"},
@@ -63,15 +68,13 @@ class DeliveryService:
         self.order_metadata_repo = order_metadata_repo
         self.restaurant_repo = restaurant_repo
 
-    def list_partners(self, restaurant_id: int) -> list[DeliveryPartnerResponse]:
+    def list_partners(self, restaurant_id: int | None = None) -> list[DeliveryPartnerResponse]:
         return [DeliveryPartnerResponse(**p) for p in self.delivery_repo.list_partners(restaurant_id)]
 
     def create_partner(
         self, payload: DeliveryPartnerCreate, restaurant_id: int | None = None
     ) -> DeliveryPartnerResponse:
-        data = payload.model_dump()
-        if restaurant_id is not None:
-            data["restaurant_id"] = restaurant_id
+        data = payload.model_dump(exclude_none=True)
         created = self.delivery_repo.create_partner(data)
         return DeliveryPartnerResponse(**created)
 
@@ -84,11 +87,6 @@ class DeliveryService:
         partner = self.delivery_repo.get_partner(partner_id)
         if not partner:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Delivery partner not found")
-        if restaurant_id is not None and partner.get("restaurant_id") != restaurant_id:
-            raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Delivery partner not in your restaurant",
-            )
         updated = self.delivery_repo.update_partner(partner_id, payload.model_dump(exclude_unset=True))
         if not updated:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Delivery partner not found")
@@ -119,10 +117,10 @@ class DeliveryService:
         partner = self.delivery_repo.get_partner(payload.delivery_partner_id)
         if not partner:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Delivery partner not found")
-        if partner.get("restaurant_id") != restaurant_id:
+        if not partner.get("is_active", True):
             raise HTTPException(
-                status_code=status.HTTP_403_FORBIDDEN,
-                detail="Delivery partner not in your restaurant",
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Delivery partner is not active",
             )
         assignment = self.delivery_repo.assign_delivery(
             {
@@ -134,15 +132,40 @@ class DeliveryService:
         self.delivery_repo.update_partner(payload.delivery_partner_id, {"status": "busy"})
         return DeliveryAssignmentResponse(**assignment)
 
-    def _build_assignment_detail(self, assignment: dict) -> DeliveryAssignmentDetailResponse:
+    def _build_assignment_detail(
+        self, assignment: dict, distance_km_value: float | None = None
+    ) -> DeliveryAssignmentDetailResponse:
         order = self.order_repo.get_by_order_id(assignment["order_id"])
         if not order:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Order not found")
         delivery_address = None
+        delivery_lat = None
+        delivery_lng = None
+        restaurant_id = None
         if self.order_metadata_repo:
             metadata = self.order_metadata_repo.get_by_order_id(order.order_id)
             if metadata:
                 delivery_address = metadata.get("delivery_address")
+                delivery_lat = metadata.get("delivery_lat")
+                delivery_lng = metadata.get("delivery_lng")
+                restaurant_id = metadata.get("restaurant_id")
+
+        restaurant_name = None
+        restaurant_address = None
+        restaurant_lat = None
+        restaurant_lng = None
+        if self.restaurant_repo:
+            restaurant = (
+                self.restaurant_repo.get_by_id(restaurant_id)
+                if restaurant_id is not None
+                else None
+            )
+            if restaurant:
+                restaurant_name = restaurant.get("name")
+                restaurant_address = restaurant.get("address")
+                restaurant_lat = restaurant.get("latitude")
+                restaurant_lng = restaurant.get("longitude")
+
         driver_name = None
         if assignment.get("delivery_partner_id"):
             driver = self.delivery_repo.get_partner(assignment["delivery_partner_id"])
@@ -157,11 +180,18 @@ class DeliveryService:
             customer_name=order.customer_name,
             phone=order.phone,
             delivery_address=delivery_address,
+            delivery_lat=float(delivery_lat) if delivery_lat is not None else None,
+            delivery_lng=float(delivery_lng) if delivery_lng is not None else None,
             order_status=normalize_status(order.status),
             order_type=order.order_type,
             total=order.total,
             notes=order.notes,
             driver_name=driver_name,
+            restaurant_name=restaurant_name,
+            restaurant_address=restaurant_address,
+            restaurant_lat=float(restaurant_lat) if restaurant_lat is not None else None,
+            restaurant_lng=float(restaurant_lng) if restaurant_lng is not None else None,
+            distance_km=distance_km_value,
             items=[
                 DeliveryOrderItemSummary(
                     name=item.name,
@@ -172,13 +202,51 @@ class DeliveryService:
             ],
         )
 
-    def _assignment_matches_restaurant(self, assignment: dict, restaurant_id: int) -> bool:
-        if not self.order_metadata_repo:
-            return restaurant_id == 1
-        metadata = self.order_metadata_repo.get_by_order_id(assignment["order_id"])
-        if not metadata:
-            return restaurant_id == 1
-        return metadata.get("restaurant_id", 1) == restaurant_id
+    def _pickup_coords_for_assignment(self, assignment: dict) -> tuple[float | None, float | None]:
+        restaurant_id = None
+        if self.order_metadata_repo:
+            metadata = self.order_metadata_repo.get_by_order_id(assignment["order_id"])
+            if metadata:
+                restaurant_id = metadata.get("restaurant_id")
+        if self.restaurant_repo and restaurant_id is not None:
+            restaurant = self.restaurant_repo.get_by_id(restaurant_id)
+            if restaurant:
+                lat = restaurant.get("latitude")
+                lng = restaurant.get("longitude")
+                if lat is not None and lng is not None:
+                    return float(lat), float(lng)
+        return None, None
+
+    def _order_radius_km(self) -> float:
+        return get_settings().delivery_partner_order_radius_km
+
+    def _resolve_driver_coords(
+        self,
+        partner: dict,
+        latitude: float | None = None,
+        longitude: float | None = None,
+        *,
+        persist: bool = False,
+        required: bool = False,
+    ) -> tuple[float | None, float | None]:
+        lat = latitude if latitude is not None else partner.get("last_latitude")
+        lng = longitude if longitude is not None else partner.get("last_longitude")
+        if is_valid_coord(lat, lng):
+            if persist and latitude is not None and longitude is not None:
+                self.delivery_repo.update_partner_location(partner["id"], float(lat), float(lng))
+            return float(lat), float(lng)
+        if required:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Driver location is required. Enable GPS to see and accept nearby orders.",
+            )
+        return None, None
+
+    def update_partner_location(self, user: dict, payload: DriverPartnerLocationUpdate) -> None:
+        partner = self.resolve_partner(user)
+        self.delivery_repo.update_partner_location(
+            partner["id"], payload.latitude, payload.longitude
+        )
 
     def ensure_delivery_pool_entry(self, order_id: str) -> None:
         """Ensure an Accepted delivery order has an unassigned driver-pool entry."""
@@ -209,17 +277,30 @@ class DeliveryService:
                 continue
             self.ensure_delivery_pool_entry(order.order_id)
 
-    def _is_available_for_driver(self, assignment: dict, restaurant_id: int) -> bool:
+    def _is_available_for_driver(
+        self,
+        assignment: dict,
+        driver_lat: float | None = None,
+        driver_lng: float | None = None,
+    ) -> tuple[bool, float | None]:
         if assignment.get("delivery_partner_id") is not None:
-            return False
+            return False, None
         if assignment.get("delivery_status") != "pending_acceptance":
-            return False
-        if not self._assignment_matches_restaurant(assignment, restaurant_id):
-            return False
+            return False, None
         order = self.order_repo.get_by_order_id(assignment["order_id"])
         if not order:
-            return False
-        return normalize_status(order.status) in DRIVER_ACCEPT_FROM
+            return False, None
+        if normalize_status(order.status) not in DRIVER_ACCEPT_FROM:
+            return False, None
+        if driver_lat is None or driver_lng is None:
+            return False, None
+        pickup_lat, pickup_lng = self._pickup_coords_for_assignment(assignment)
+        if pickup_lat is None or pickup_lng is None:
+            return False, None
+        dist = distance_km(driver_lat, driver_lng, pickup_lat, pickup_lng)
+        if dist > self._order_radius_km():
+            return False, dist
+        return True, dist
 
     def resolve_partner(self, user: dict) -> dict:
         """Return the delivery partner profile for a user, creating one if missing."""
@@ -228,7 +309,6 @@ class DeliveryService:
             return partner
         return self.delivery_repo.create_partner(
             {
-                "restaurant_id": user.get("restaurant_id") or 1,
                 "name": user.get("full_name") or user.get("username", "Driver"),
                 "phone": user.get("phone") or "",
                 "user_id": user["id"],
@@ -237,19 +317,36 @@ class DeliveryService:
             }
         )
 
-    def list_assignments_for_partner(self, user: dict) -> DeliveryAssignmentListResponse:
+    def list_assignments_for_partner(
+        self,
+        user: dict,
+        latitude: float | None = None,
+        longitude: float | None = None,
+    ) -> DeliveryAssignmentListResponse:
         partner = self.resolve_partner(user)
         self.sync_delivery_queue()
+        driver_lat, driver_lng = self._resolve_driver_coords(
+            partner, latitude, longitude, persist=False
+        )
         partner_assignments = self.delivery_repo.list_assignments_for_partner(partner["id"])
         claimed_ids = {a["order_id"] for a in partner_assignments}
-        available = [
-            a
-            for a in self.delivery_repo.list_unassigned_pending()
-            if a["order_id"] not in claimed_ids and self._is_available_for_driver(a, partner["restaurant_id"])
-        ]
-        combined = available + partner_assignments
+        available: list[tuple[dict, float | None]] = []
+        for a in self.delivery_repo.list_unassigned_pending():
+            if a["order_id"] in claimed_ids:
+                continue
+            eligible, dist = self._is_available_for_driver(a, driver_lat, driver_lng)
+            if eligible:
+                available.append((a, dist))
+        available.sort(key=lambda item: item[1] if item[1] is not None else math.inf)
         items = []
-        for a in combined:
+        for a, dist in available:
+            try:
+                items.append(self._build_assignment_detail(a, distance_km_value=dist))
+            except HTTPException as e:
+                if e.status_code == status.HTTP_404_NOT_FOUND and e.detail == "Order not found":
+                    continue
+                raise e
+        for a in partner_assignments:
             try:
                 items.append(self._build_assignment_detail(a))
             except HTTPException as e:
@@ -276,8 +373,21 @@ class DeliveryService:
             failed=failed,
         )
 
-    def accept_assignment(self, order_id: str, user: dict) -> DeliveryAssignmentDetailResponse:
+    def accept_assignment(
+        self,
+        order_id: str,
+        user: dict,
+        latitude: float | None = None,
+        longitude: float | None = None,
+    ) -> DeliveryAssignmentDetailResponse:
         partner = self.resolve_partner(user)
+        driver_lat, driver_lng = self._resolve_driver_coords(
+            partner,
+            latitude,
+            longitude,
+            persist=latitude is not None and longitude is not None,
+            required=True,
+        )
         assignment = self.delivery_repo.get_assignment_by_order(order_id)
         if not assignment:
             raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Assignment not found")
@@ -288,8 +398,13 @@ class DeliveryService:
             )
         partner_id = assignment.get("delivery_partner_id")
         if partner_id is None:
-            if not self._assignment_matches_restaurant(assignment, partner["restaurant_id"]):
-                raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail="Not available for your restaurant")
+            eligible, _dist = self._is_available_for_driver(assignment, driver_lat, driver_lng)
+            if not eligible:
+                radius = int(self._order_radius_km())
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail=f"Order is outside your service area ({radius} km)",
+                )
             claimed = self.delivery_repo.claim_assignment(order_id, partner["id"])
             if not claimed:
                 raise HTTPException(
@@ -418,6 +533,7 @@ class DeliveryService:
         restaurant_id = 1
         delivery_address = None
         destination = None
+        restaurant_name = None
         if self.order_metadata_repo:
             meta = self.order_metadata_repo.get_by_order_id(order_id)
             if meta:
@@ -429,6 +545,12 @@ class DeliveryService:
                         longitude=float(meta["delivery_lng"]),
                         label="Delivery address",
                     )
+
+        restaurant_point = self._restaurant_point(restaurant_id)
+        if self.restaurant_repo:
+            restaurant = self.restaurant_repo.get_by_id(restaurant_id)
+            if restaurant:
+                restaurant_name = restaurant.get("name")
 
         driver = None
         if live:
@@ -448,7 +570,8 @@ class DeliveryService:
             delivery_status=delivery_status,
             live_tracking_enabled=live,
             delivery_address=delivery_address,
-            restaurant=self._restaurant_point(restaurant_id),
+            restaurant_name=restaurant_name,
+            restaurant=restaurant_point,
             destination=destination,
             driver=driver,
         )

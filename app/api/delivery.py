@@ -24,6 +24,7 @@ from app.schemas.delivery import (
     DeliveryStatusUpdate,
     DriverLiveLocation,
     DriverLocationUpdate,
+    DriverPartnerLocationUpdate,
 )
 from app.services.delivery_service import DeliveryService
 
@@ -37,7 +38,7 @@ def list_partners(
     tenant: TenantContext = Depends(get_tenant_context),
     service: DeliveryService = Depends(get_delivery_service),
 ) -> List[DeliveryPartnerResponse]:
-    rid = resolve_requested_restaurant_id(tenant, restaurant_id)
+    rid = resolve_requested_restaurant_id(tenant, restaurant_id) if restaurant_id else None
     return service.list_partners(rid)
 
 
@@ -45,10 +46,9 @@ def list_partners(
 def create_partner(
     payload: DeliveryPartnerCreate,
     _: TokenPayload = Depends(require_roles(ROLE_ADMIN)),
-    tenant: TenantContext = Depends(get_tenant_context),
     service: DeliveryService = Depends(get_delivery_service),
 ) -> DeliveryPartnerResponse:
-    return service.create_partner(payload, restaurant_id=require_admin_tenant(tenant))
+    return service.create_partner(payload)
 
 
 @router.put("/partners/{partner_id}", response_model=DeliveryPartnerResponse)
@@ -83,6 +83,20 @@ def update_driver_location(
     return service.update_driver_location(user["id"], payload)
 
 
+@router.post("/partner-location", status_code=status.HTTP_204_NO_CONTENT)
+def update_partner_location(
+    payload: DriverPartnerLocationUpdate,
+    current_user: TokenPayload = Depends(require_roles(ROLE_DRIVER)),
+    user_repo: UserRepository = Depends(get_user_repository),
+    service: DeliveryService = Depends(get_delivery_service),
+) -> None:
+    user = user_repo.get_by_username(current_user.username)
+    if not user:
+        from fastapi import HTTPException, status as http_status
+        raise HTTPException(status_code=http_status.HTTP_404_NOT_FOUND, detail="User not found")
+    service.update_partner_location(user, payload)
+
+
 @router.get("/report", response_model=DeliveryReportResponse)
 def get_delivery_report(
     current_user: TokenPayload = Depends(require_roles(ROLE_DRIVER)),
@@ -98,6 +112,8 @@ def get_delivery_report(
 
 @router.get("/assignments", response_model=DeliveryAssignmentListResponse)
 def list_assignments(
+    latitude: Optional[float] = Query(None, ge=-90, le=90),
+    longitude: Optional[float] = Query(None, ge=-180, le=180),
     current_user: TokenPayload = Depends(require_roles(ROLE_DRIVER)),
     user_repo: UserRepository = Depends(get_user_repository),
     service: DeliveryService = Depends(get_delivery_service),
@@ -106,7 +122,7 @@ def list_assignments(
     if not user:
         from fastapi import HTTPException, status as http_status
         raise HTTPException(status_code=http_status.HTTP_404_NOT_FOUND, detail="User not found")
-    return service.list_assignments_for_partner(user)
+    return service.list_assignments_for_partner(user, latitude=latitude, longitude=longitude)
 
 
 @router.post("/assignments/accept", response_model=DeliveryAssignmentDetailResponse)
@@ -117,18 +133,27 @@ def accept_assignment_post(
     service: DeliveryService = Depends(get_delivery_service),
 ) -> DeliveryAssignmentDetailResponse:
     user = user_repo.get_by_username(current_user.username)
-    return service.accept_assignment(payload.order_id, user)
+    return service.accept_assignment(
+        payload.order_id,
+        user,
+        latitude=payload.latitude,
+        longitude=payload.longitude,
+    )
 
 
 @router.put("/assignments/{order_id}/accept", response_model=DeliveryAssignmentDetailResponse)
 def accept_assignment(
     order_id: str,
+    latitude: Optional[float] = Query(None, ge=-90, le=90),
+    longitude: Optional[float] = Query(None, ge=-180, le=180),
     current_user: TokenPayload = Depends(require_roles(ROLE_DRIVER)),
     user_repo: UserRepository = Depends(get_user_repository),
     service: DeliveryService = Depends(get_delivery_service),
 ) -> DeliveryAssignmentDetailResponse:
     user = user_repo.get_by_username(current_user.username)
-    return service.accept_assignment(order_id, user)
+    return service.accept_assignment(
+        order_id, user, latitude=latitude, longitude=longitude
+    )
 
 
 @router.post("/assignments/update-status", response_model=DeliveryAssignmentDetailResponse)

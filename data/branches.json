@@ -23,6 +23,30 @@
       "is_active": true,
       "created_at": "2026-06-09T17:34:32.475919+00:00",
       "updated_at": "2026-06-09T17:34:32.475919+00:00"
+    },
+    {
+      "id": 3,
+      "restaurant_id": 3,
+      "name": "Biryanis And More — Gachibowli",
+      "address": "Door 2-1/6/FS.G4, Gachibowli, Hyderabad, Telangana 500032, India",
+      "phone": "+914023000022",
+      "email": "contact@biryanisandmore.com",
+      "working_hours": "Monday – Sunday: 11 AM – 11 PM",
+      "is_active": true,
+      "created_at": "2026-06-13T10:00:00.000000+00:00",
+      "updated_at": "2026-06-13T10:00:00.000000+00:00"
+    },
+    {
+      "id": 4,
+      "restaurant_id": 4,
+      "name": "Pista House — Gachibowli",
+      "address": "2-48, Plot 424, Opposite Care Hospital, Preston Prime Mall, Gachibowli, Hyderabad, Telangana 500032, India",
+      "phone": "+914023561234",
+      "email": "gachibowli@pistahouse.com",
+      "working_hours": "Daily: 12 PM – 3 AM",
+      "is_active": true,
+      "created_at": "2026-06-13T10:00:00.000000+00:00",
+      "updated_at": "2026-06-13T10:00:00.000000+00:00"
     }
   ]
 }

@@ -59,5 +59,15 @@
       "id": 5
     }
   ],
-  "driver_locations": []
+  "driver_locations": [
+    {
+      "order_id": "ORD-20260008",
+      "delivery_partner_id": 1,
+      "latitude": 17.440648760751795,
+      "longitude": 78.36375247060246,
+      "created_at": "2026-06-13T17:44:59.581054+00:00",
+      "updated_at": "2026-06-13T17:47:37.976624+00:00",
+      "id": 1
+    }
+  ]
 }

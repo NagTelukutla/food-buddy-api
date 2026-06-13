@@ -99,6 +99,8 @@ class OrderTrackResponse(BaseModel):
     items: List[OrderItemResponse]
     delivery_status: Optional[str] = None
     live_tracking_enabled: bool = False
+    restaurant_name: Optional[str] = None
+    restaurant_address: Optional[str] = None
 
 
 class OrderAssignDelivery(BaseModel):

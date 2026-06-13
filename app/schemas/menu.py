@@ -9,6 +9,9 @@ VALID_CATEGORIES = [
     "Biryani",
     "Beverages",
     "Desserts",
+    "Chinese",
+    "Seafood",
+    "Fast Food",
 ]
 
 

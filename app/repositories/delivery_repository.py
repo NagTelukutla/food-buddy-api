@@ -15,12 +15,13 @@ class DeliveryRepository(BaseJsonRepository):
             {"partners": [], "assignments": [], "driver_locations": []},
         )
 
-    def list_partners(self, restaurant_id: int) -> List[Dict[str, Any]]:
-        return [
-            p
-            for p in self.get_collection(self.PARTNERS)
-            if p.get("restaurant_id") == restaurant_id and p.get("is_active", True)
+    def list_partners(self, restaurant_id: int | None = None) -> List[Dict[str, Any]]:
+        partners = [
+            p for p in self.get_collection(self.PARTNERS) if p.get("is_active", True)
         ]
+        if restaurant_id is None:
+            return partners
+        return [p for p in partners if p.get("restaurant_id") == restaurant_id]
 
     def get_partner(self, partner_id: int) -> Optional[Dict[str, Any]]:
         return self.find_by_id(self.PARTNERS, partner_id)
@@ -45,6 +46,18 @@ class DeliveryRepository(BaseJsonRepository):
     def update_partner(self, partner_id: int, updates: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         updates = {**updates, "updated_at": utc_now_iso()}
         return self.update_item(self.PARTNERS, partner_id, updates)
+
+    def update_partner_location(
+        self, partner_id: int, latitude: float, longitude: float
+    ) -> Optional[Dict[str, Any]]:
+        return self.update_partner(
+            partner_id,
+            {
+                "last_latitude": latitude,
+                "last_longitude": longitude,
+                "last_location_at": utc_now_iso(),
+            },
+        )
 
     def get_assignment_by_order(self, order_id: str) -> Optional[Dict[str, Any]]:
         for item in self.get_collection(self.ASSIGNMENTS):
